@@ -1,9 +1,9 @@
 #!/bin/bash
 
-A="${1:?BAD_ACTION}"
+C="${1:?BAD_COMMAND}"
 
 # shellcheck source=src/list
 # shellcheck source=src/del
 # shellcheck source=src/del-all
 # shellcheck source=src/create
-[ -e "${A}" ] && . "$A" || exit 1
+[ -e "${C}" ] && . "$C" || exit 1
