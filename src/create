@@ -6,11 +6,14 @@ C="${SLACK_API_COOKI:?MISSING_COOKIE}"
 O="${SLACK_API_OWNER:?MISSING_OWNER}"
 T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
 
+! [ -e "${F}" ] && exit 1
+
 A="https://${O}.slack.com/api/admin.emoji.add"
+M="$(mimetype -b "$F")"
 
 curl "$A" \
   -H "$C" \
-  -H "Content-Type: image/png" \
+  -H "Content-Type: ${M}" \
   -F token="$T" \
   -F name="$N" \
   -F mode="data" \
