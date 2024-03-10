@@ -12,7 +12,7 @@ A="https://${O}.slack.com/api/emoji.add"
 ! [ -d "${P}" ] && echo "$P BAD_PATH" && exit 1
 
 
-while read -r N; do
+while read -r F; do
   ((I++))
   curl "$A" \
     -H "$C" \
