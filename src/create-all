@@ -11,8 +11,8 @@ A="https://${O}.slack.com/api/emoji.add"
 
 ! [ -d "${P}" ] && echo "$P BAD_PATH" && exit 1
 
-
 while read -r F; do
+  N="${F##*/}"; N="${N%%.*}"
   ((I++))
   curl "$A" \
     -H "$C" \
@@ -22,6 +22,6 @@ while read -r F; do
     -F token="$T" \
     -F name="$N"
 
-  sleep "$S"
   echo " [INFO]: ($I) $N created."
+  sleep "$S"
 done < <(find "$P" -type f -name '*.png')
