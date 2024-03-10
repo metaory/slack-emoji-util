@@ -1,0 +1,9 @@
+#!/bin/bash
+
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+
+L="https://${O}.slack.com/api/emoji.adminList"
+
+curl "$L" -H "$C" -F token="$T" -F name="$N"

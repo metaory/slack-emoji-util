@@ -1,0 +1,10 @@
+#!/bin/bash
+
+N="${1:?MISSING_NAME}"
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+
+R="https://${O}.slack.com/api/emoji.remove"
+
+curl "$R" -H "$C" -F token="$T" -F name="$N"

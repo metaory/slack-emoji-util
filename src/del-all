@@ -1,0 +1,12 @@
+#!/bin/bash
+
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+
+L="https://${O}.slack.com/api/emoji.adminList"
+R="https://${O}.slack.com/api/emoji.remove"
+
+while read -r N; do
+  curl "$R" -H "$C" -F token="$T" -F name="$N"
+done < <(curl "$L" -H "$C" -F token="$T" | jq -r '.emoji[].name')

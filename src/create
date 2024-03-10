@@ -1,0 +1,19 @@
+#!/bin/bash
+
+N="${1:?MISSING_NAME}"
+F="${2:-${N}.png}"
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+
+A="https://${O}.slack.com/api/admin.emoji.add"
+
+curl "$A" \
+  -H "$C" \
+  -H "Content-Type: image/png" \
+  -F token="$T" \
+  -F name="$N" \
+  -F mode="data" \
+  -F mode="data" \
+  -F name="image" \
+  -F filename="$F" \
