@@ -1,6 +1,7 @@
 #!/bin/bash
 
 C="src/${1:?BAD_COMMAND}"
+shift
 
 # shellcheck source=src/list
 # shellcheck source=src/del
