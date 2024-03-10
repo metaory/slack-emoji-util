@@ -7,4 +7,5 @@ shift
 # shellcheck source=src/del
 # shellcheck source=src/del-all
 # shellcheck source=src/create
+# shellcheck source=src/create-all
 [ -e "${C}" ] && . "$C" || exit 1

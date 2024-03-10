@@ -19,13 +19,15 @@ COMMANDS
 	del-all
 	del
 	create
+	create-all
 
 
 EXAMPLES
 	emoji-util list
-	emoji-util del-all
+	emoji-util del-all [SLEEP]
 	emoji-util del NAME
 	emoji-util create NAME [PATH]
+	emoji-util create-all PATH [SLEEP]
 ```
 
 ---
