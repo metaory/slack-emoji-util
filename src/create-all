@@ -1,0 +1,31 @@
+#!/bin/bash
+
+I=0
+P="${1:?NO_PATH}"
+S="${2:-2}"
+L="${3:-create.log}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+
+cat <<< "$P" > "$L"
+
+A="https://${O}.slack.com/api/emoji.add"
+
+! [ -d "${P}" ] && echo "$P BAD_PATH" && exit 1
+
+while read -r F; do
+  N="${F##*/}"; N="${N%%.*}"
+  ((I++))
+  echo -e "\n\n[${I}]\n$N" >> "$L"
+
+  curl "$A" \
+    -b "$C" \
+    -H 'Content-Type: multipart/form-data' \
+    -F image="@$F" \
+    -F mode="data" \
+    -F token="$T" \
+    -F name="$N" | tee -a "$L"
+
+  sleep "$S"
+done < <(find "$P" -type f -name '*.png')

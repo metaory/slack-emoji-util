@@ -1,0 +1,19 @@
+#!/bin/bash
+
+N="${1:?NO_NAME}"
+F="${2:-${N}.png}"
+T="${SLACK_API_TOKEN:?MISSING_TOKEN}"
+O="${SLACK_API_OWNER:?MISSING_OWNER}"
+C="${SLACK_API_COOKI:?MISSING_COOKIE}"
+
+A="https://${O}.slack.com/api/emoji.add"
+
+! [ -e "${F}" ] && echo "$F MISSING_FILE" && exit 1
+
+curl "$A" \
+  -b "$C" \
+  -H 'Content-Type: multipart/form-data' \
+  -F image="@$F" \
+  -F mode="data" \
+  -F token="$T" \
+  -F name="$N"
