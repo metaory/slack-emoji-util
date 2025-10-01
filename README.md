@@ -17,14 +17,32 @@ Slack emoji management utility - simple CRUD operations on Slack admin API.
    # Edit curl-request with your copied curl command
    ```
 
+### Icons
+
+[icon-collection](https://github.com/metaory/icon-collection/tree/master/logo) - curated logos for Slack emojis.
+
 ## Usage
 
 ```bash
-emoji-util list                    # List all emojis
-emoji-util del NAME               # Delete specific emoji
-emoji-util del-all [SLEEP]        # Delete all emojis
-emoji-util create NAME [PATH]     # Create single emoji
-emoji-util create-all PATH [SLEEP] # Create emojis from directory
+emoji-util list                           # List all emojis
+emoji-util del NAME                       # Delete specific emoji
+emoji-util del-all [SLEEP]                # Delete all emojis
+emoji-util create NAME PATH               # Create single emoji from file
+emoji-util create-all PATH [SLEEP] [LOG]  # Create emojis from directory
+```
+
+### Examples
+
+```bash
+# Create single emoji
+emoji-util create tmux ~/dev/icon-collection/logo/tmux.png
+emoji-util create lambda-1 ~/dev/icon-collection/logo/lambda-1.png
+
+# Create all emojis from directory
+emoji-util create-all ~/dev/icon-collection/logo
+
+# List all emojis
+emoji-util list
 ```
 
 ---

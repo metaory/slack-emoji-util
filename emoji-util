@@ -1,16 +1,17 @@
 #!/bin/bash
 
-! [ -f curl-request ] && echo "curl-request file not found. 
-     Please copy a curl command 
+! [ -f curl-request ] && echo "curl-request
+     file not found.
+     Please copy a curl command
      from browser network tab to curl-request file" && exit 1
 
 CURL_CMD=$(cat curl-request | tr '\n' ' ')
 
-read -r WORKSPACE < <(grep -o 'https://[^.]*\.slack\.com' <<< "$CURL_CMD" | head -1 | sed 's/.*https:\/\/\([^.]*\)\.slack\.com/\1/')
+read -r WORKSPACE < <(grep -o 'https://[^.]*\.slack\.com' <<<"$CURL_CMD" | head -1 | sed 's/.*https:\/\/\([^.]*\)\.slack\.com/\1/')
 
-read -r COOKIE < <(sed -n "s/.*-b '\([^']*\)'.*/\1/p" <<< "$CURL_CMD")
+read -r COOKIE < <(sed -n "s/.*-b '\([^']*\)'.*/\1/p" <<<"$CURL_CMD")
 
-read -r TOKEN < <(grep -o 'xoxc-[a-f0-9-]*' <<< "$CURL_CMD" | head -1)
+read -r TOKEN < <(grep -o 'xoxc-[a-f0-9-]*' <<<"$CURL_CMD" | head -1)
 
 export SLACK_API_OWNER="$WORKSPACE"
 export SLACK_API_COOKI="$COOKIE"
